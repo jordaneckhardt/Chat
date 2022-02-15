@@ -31,10 +31,10 @@ class TableViewController: UITableViewController {
 
 		Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
 			DispatchQueue.main.async {
-				let distanceFromBottom = self.tableView.contentOffset.y - (self.tableView.contentSize.height - self.tableView.frame.size.height)
+				let distanceFromBottom = self.tableView.contentSize.height - self.tableView.frame.size.height - self.tableView.contentOffset.y
 				self.addRandomData()
 				let end = IndexPath(row: self.data.count - 1, section: 0)
-				self.tableView.insertRows(at: [end], with: .bottom)
+				self.tableView.insertRows(at: [end], with: .automatic)
 				if distanceFromBottom < 40 {
 					self.tableView.scrollToRow(at: end, at: .bottom, animated: true)
 				}
